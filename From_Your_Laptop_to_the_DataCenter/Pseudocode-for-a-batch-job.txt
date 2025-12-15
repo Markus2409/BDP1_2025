@@ -1,16 +1,63 @@
-# prologue
-if not check_if_exec_exist():
-    install_exec()
-if not check_if_db_exist("db_path"): exit(1)
-check_md5sum("db")
-get_query("input_path")
- 
-#main
-launch_bwa("query","db")
-launch_blast("query","db"
- 
-# epilogue
-md5sum("outfile")
-gzip_out("outfile")
-save_out("outfile")
-clean_all()
+================================================================================
+SPIEGAZIONE DEL WORKFLOW DEL JOB (PROLOGUE - MAIN - EPILOGUE)
+================================================================================
+
+Questo pseudo-codice illustra il ciclo di vita di un job sottomesso a un sistema 
+di calcolo distribuito (come HTCondor).
+
+--- 1. PROLOGUE (Preparazione dell'ambiente) ---
+Questa fase prepara il Worker Node (il computer che eseguirà il calcolo) prima 
+che l'applicazione principale parta.
+
+- if not check_if_exec_exist(): install_exec()
+  Verifica se il software necessario (es. BWA o BLAST) è presente sul nodo.
+  Se non c'è, lo installa (o lo scarica/scompatta). Questo evita che il job 
+  [cite_start]fallisca per mancanza di eseguibili[cite: 1500].
+
+- if not check_if_db_exist("db_path"): exit(1)
+  Verifica la presenza del Database di riferimento (es. Genoma Umano). 
+  Nelle slide viene specificato che i database di grandi dimensioni (es. 3GB) 
+  NON devono essere trasferiti con l'Input Sandbox di ogni job, ma devono essere 
+  [cite_start]pre-distribuiti o presenti sul nodo (Data Distribution Strategy)[cite: 4323].
+  Se il DB manca, il job termina con errore (exit 1).
+
+- check_md5sum("db")
+  Verifica l'integrità del database calcolando il checksum (MD5). 
+  [cite_start]È fondamentale verificare che i dati non siano corrotti prima di usarli[cite: 1791].
+
+- get_query("input_path")
+  Recupera il file di input specifico per questo job (es. le sequenze da allineare). 
+  Questo file è solitamente piccolo e può essere trasferito tramite Input Sandbox 
+  [cite_start]o scaricato al momento[cite: 4321].
+
+
+--- 2. MAIN (Esecuzione) ---
+Questa è la fase di "Executable", dove viene svolto il calcolo scientifico vero e proprio.
+
+- launch_bwa("query","db")
+- launch_blast("query","db")
+  Lancia gli applicativi di allineamento.
+  - [cite_start]BLASTn: Algoritmo più vecchio e lento (approccio brute force ottimizzato)[cite: 1687].
+  - BWA: Algoritmo più recente ed efficiente (Burrows-Wheeler Aligner), molto più 
+    [cite_start]veloce per grandi dataset[cite: 1738].
+
+
+--- 3. EPILOGUE (Chiusura e Post-processing) ---
+Questa fase gestisce i risultati dopo che il calcolo è terminato.
+
+- md5sum("outfile")
+  Calcola il checksum del file di output generato per garantirne l'integrità 
+  [cite_start]prima del trasferimento[cite: 1797].
+
+- gzip_out("outfile")
+  Comprime il file di output. 
+  Nelle slide è enfatizzato: "Moving around uncompressed huge ASCII files is a crime!" 
+  (Spostare file ASCII enormi non compressi è un crimine) [cite_start][cite: 959, 1804].
+
+- save_out("outfile")
+  Trasferisce il risultato compresso verso lo storage di destinazione (Output Sandbox 
+  [cite_start]o storage remoto)[cite: 2737].
+
+- clean_all
+  Pulisce la directory di lavoro sul Worker Node, rimuovendo file temporanei per 
+  [cite_start]lasciare la macchina pulita per il job successivo[cite: 2739].
