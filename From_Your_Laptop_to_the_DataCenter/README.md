@@ -1,14 +1,14 @@
 # 📚 Indice della Documentazione
 
-| Argomento | File di Riferimento | Descrizione |
+| Argomento | Link Rapido | Descrizione |
 | :--- | :--- | :--- |
-| 🌐 **Shared Storage** | [NFS Client-Server](#Howto-Install-an-NFS-Client-Server.sh) | Configurazione del Network File System per dati condivisi. |
-| 📊 **Job Submission** | [HTCondor Batch Job](#Howto-submit-a-batch-job-with-HTCondor.sh) | Guida all'uso dei comandi Condor e gestione code. |
-| 🧬 **Workflow Logic** | [Job Anatomy](#Pseudocode-for-a-batch-job.txt) | Struttura Prologue-Main-Epilogue e best practices. |
-| ☁️ **Cloud Cluster** | [HTCondor AWS](#install_an_HTCondor_machine.sh) | Setup di un cluster distribuito su istanze EC2. |
+| 🌐 **Shared Storage** | [Vai alla sezione](#nfs-section) | Configurazione del Network File System per dati condivisi. |
+| 📊 **Job Submission** | [Vai alla sezione](#condor-job-section) | Guida all'uso dei comandi Condor e gestione code. |
+| 🧬 **Workflow Logic** | [Vai alla sezione](#anatomy-section) | Struttura Prologue-Main-Epilogue e best practices. |
+| ☁️ **Cloud Cluster** | [Vai alla sezione](#aws-section) | Setup di un cluster distribuito su istanze EC2. |
 
 ---
-
+<a name="nfs-section"></a>
 # [Howto-Install-an-NFS-Client-Server.sh](Howto-Install-an-NFS-Client-Server.sh)
 ## Spiegazione Configurazione Network File System (NFS)
 
@@ -49,6 +49,7 @@ Come abbiamo visto per i dischi AWS o locali, il mount manuale sparisce al riavv
 NFS è la soluzione ideale per la **Shared Storage** in una rete locale. Mentre **WebDAV** (visto in precedenza) è più adatto per l'uso via Web/Internet e browser, **NFS** è molto più veloce e performante per far comunicare tra loro i server di un data center o i nodi di un'infrastruttura Big Data.
 
 ----
+<a name="condor-job-section"></a>
 # [Howto-submit-a-batch-job-with-HTCondor.sh](Howto-submit-a-batch-job-with-HTCondor.sh)
 ## Gestione dei Job con HTCondor
 
@@ -99,7 +100,7 @@ L'esempio `hg` (Human Genome) mostra un caso d'uso reale:
 ### In sintesi: Perché usare HTCondor?
 HTCondor è l'intelligenza che automatizza la distribuzione dei lavori. Invece di collegarti a 10 server diversi e lanciare i comandi a mano, scrivi un file di descrizione e lasci che Condor trovi la risorsa migliore, gestisca i fallimenti e ti riporti i file di output.
 ----
-
+<a name="anatomy-section"></a>
 # [Pseudocode-for-a-batch-job.txt](Pseudocode-for-a-batch-job.txt)
 ## Anatomia di un Job: Prologue, Main ed Epilogue
 
@@ -136,6 +137,7 @@ Una volta terminato il calcolo, il job non è finito finché i dati non sono al 
 Senza Prologo ed Epilogo, un'infrastruttura Big Data collasserebbe. Il **Prologo** evita il "Black Hole Effect" (job che falliscono a catena perché manca un file), mentre l'**Epilogo** ottimizza la rete e garantisce che l'utente riceva dati validi, non corrotti.
 
 ----
+<a name="aws-section"></a>
 # [install_an_HTCondor_machine.sh](install_an_HTCondor_machine.sh)
 ## Configurazione Cluster HTCondor su AWS
 
