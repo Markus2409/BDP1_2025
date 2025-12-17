@@ -2,10 +2,10 @@
 
 | Argomento | File di Riferimento | Descrizione |
 | :--- | :--- | :--- |
-| 🌐 **Shared Storage** | [NFS Client-Server](#howto-install-an-nfs-client-server-sh) | Configurazione del Network File System per dati condivisi. |
-| 📊 **Job Submission** | [HTCondor Batch Job](#howto-submit-a-batch-job-with-htcondor-sh) | Guida all'uso dei comandi Condor e gestione code. |
-| 🧬 **Workflow Logic** | [Job Anatomy](#pseudocode-for-a-batch-job-txt) | Struttura Prologue-Main-Epilogue e best practices. |
-| ☁️ **Cloud Cluster** | [HTCondor AWS](#install_an_htcondor_machine-sh) | Setup di un cluster distribuito su istanze EC2. |
+| 🌐 **Shared Storage** | [NFS Client-Server](#Howto-Install-an-NFS-Client-Server.sh) | Configurazione del Network File System per dati condivisi. |
+| 📊 **Job Submission** | [HTCondor Batch Job](#Howto-submit-a-batch-job-with-HTCondor.sh) | Guida all'uso dei comandi Condor e gestione code. |
+| 🧬 **Workflow Logic** | [Job Anatomy](#Pseudocode-for-a-batch-job.txt) | Struttura Prologue-Main-Epilogue e best practices. |
+| ☁️ **Cloud Cluster** | [HTCondor AWS](#install_an_HTCondor_machine.sh) | Setup di un cluster distribuito su istanze EC2. |
 
 ---
 
