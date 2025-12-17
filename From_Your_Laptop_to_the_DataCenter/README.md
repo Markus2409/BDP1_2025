@@ -1,4 +1,4 @@
-# [Howto-Install-an-NFS-Client-Server.sh](From_Your_Laptop_to_the_DataCenter/Howto-Install-an-NFS-Client-Server.sh)
+# [Howto-Install-an-NFS-Client-Server.sh](Howto-Install-an-NFS-Client-Server.sh)
 ## Spiegazione Configurazione Network File System (NFS)
 
 Questa procedura serve a configurare **NFS (Network File System)**, un protocollo che permette di condividere directory e file su una rete. In un ambiente distribuito (come un cluster di calcolo), NFS è fondamentale perché permette a diversi nodi (Client) di accedere agli stessi dati centralizzati su un unico server.
@@ -38,7 +38,7 @@ Come abbiamo visto per i dischi AWS o locali, il mount manuale sparisce al riavv
 NFS è la soluzione ideale per la **Shared Storage** in una rete locale. Mentre **WebDAV** (visto in precedenza) è più adatto per l'uso via Web/Internet e browser, **NFS** è molto più veloce e performante per far comunicare tra loro i server di un data center o i nodi di un'infrastruttura Big Data.
 
 ----
-# [Howto-submit-a-batch-job-with-HTCondor.sh](From_Your_Laptop_to_the_DataCenter/Howto-submit-a-batch-job-with-HTCondor.sh)
+# [Howto-submit-a-batch-job-with-HTCondor.sh](Howto-submit-a-batch-job-with-HTCondor.sh)
 ## Gestione dei Job con HTCondor
 
 **HTCondor** è un sistema di gestione del carico di lavoro (WMS/Batch System) specializzato per l'**High Throughput Computing (HTC)**. È progettato per gestire migliaia di job indipendenti sfruttando al massimo la potenza computazionale distribuita.
@@ -89,7 +89,7 @@ L'esempio `hg` (Human Genome) mostra un caso d'uso reale:
 HTCondor è l'intelligenza che automatizza la distribuzione dei lavori. Invece di collegarti a 10 server diversi e lanciare i comandi a mano, scrivi un file di descrizione e lasci che Condor trovi la risorsa migliore, gestisca i fallimenti e ti riporti i file di output.
 ----
 
-# [Pseudocode-for-a-batch-job.txt](From_Your_Laptop_to_the_DataCenter/Pseudocode-for-a-batch-job.txt)
+# [Pseudocode-for-a-batch-job.txt](Pseudocode-for-a-batch-job.txt)
 ## Anatomia di un Job: Prologue, Main ed Epilogue
 
 In un'infrastruttura distribuita, un Job non è un semplice comando isolato, ma un workflow diviso in tre fasi critiche. Questo approccio garantisce che la potenza di calcolo non venga sprecata su nodi mal configurati o con dati corrotti.
@@ -125,7 +125,7 @@ Una volta terminato il calcolo, il job non è finito finché i dati non sono al 
 Senza Prologo ed Epilogo, un'infrastruttura Big Data collasserebbe. Il **Prologo** evita il "Black Hole Effect" (job che falliscono a catena perché manca un file), mentre l'**Epilogo** ottimizza la rete e garantisce che l'utente riceva dati validi, non corrotti.
 
 ----
-# [install_an_HTCondor_machine.sh](From_Your_Laptop_to_the_DataCenter/install_an_HTCondor_machine.sh)
+# [install_an_HTCondor_machine.sh](install_an_HTCondor_machine.sh)
 ## Configurazione Cluster HTCondor su AWS
 
 Questa guida illustra la creazione di un cluster **HTCondor** distribuito su tre istanze **AWS EC2**. Il sistema è progettato per gestire carichi di lavoro scientifici (HTC) attraverso un'architettura a ruoli distinti.
